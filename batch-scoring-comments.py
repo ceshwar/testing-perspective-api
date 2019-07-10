@@ -83,7 +83,7 @@ def main():
         p = Process(target=test_func,args=(num,))
         proc.append(p)
 
-    # Attempting to run simultaneously. This is where the error occurs:
+    # Attempting to run simultaneously.
     for p in proc:
         p.start()
 
