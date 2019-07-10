@@ -1,3 +1,4 @@
+import time
 import pandas as pd 
 from googleapiclient import discovery
 
@@ -11,10 +12,12 @@ count = 0
 toxicity_scores = []
 
 for comment in comments['comment']:
-#     print(str(count) + " : " + comment)
-    if count % 100 == 0:
-        print(count)
-    
+    print(str(count) + " : " + comment)
+    #if count % 100 == 0:
+    #    print(count)
+
+    time.sleep(1)
+ 
     count += 1
     analyze_request = {
       'comment': { 'text': comment},
@@ -31,8 +34,8 @@ for comment in comments['comment']:
         toxicity_scores.append(-1.0)
         continue
 
-#     print("P(Toxicity) = " + str(toxicity_score))
+    print("P(Toxicity) = " + str(toxicity_score))
     toxicity_scores.append(toxicity_score)
 
 comments['toxicity'] = toxicity_scores
-comments.to_csv("macro-comments-toxicity.csv", index = False)
+comments.to_csv("new-macro-comments-toxicity.csv", index = False)
